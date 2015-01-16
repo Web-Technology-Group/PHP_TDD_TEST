@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<project name="PHP Test game" default="build" description="Install dependencies and tests our game.">
+    <target name="prepare">
+        <exec command="composer install"/>
+        <mkdir dir="docs"/>
+    </target>
+
+    <target name="test">
+        <phpunit haltonerror="true" haltonfailure="true">
+            <formatter type="plain" usefile="false"/>
+            <batchtest>
+                <fileset dir="src">
+                    <include name="*Test.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit>
+    </target>
+
+    <!-- docs isn't used for now -->
+    <target name="docs">
+        <docblox title="Phing Example" destdir="docs" quiet="true">
+            <fileset dir="src">
+                <include name="*.php"/>
+            </fileset>
+        </docblox>
+    </target>
+
+    <target name="build" depends="prepare,test">
+    </target>
+
+    <target name="clean">
+        <delete dir="reports"/>
+        <delete dir="docs"/>
+    </target>
+</project>

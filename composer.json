@@ -1,0 +1,23 @@
+{
+    "name": "wtg/php-test",
+    "description": "PHP Test for applicants",
+    "require": {
+        "league/event": "2.0.0",
+        "wp-cli/php-cli-tools": "0.10.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.4",
+        "phing/phing": "~2.9"
+    },
+    "autoload": {
+        "psr-4": {"": "src/"}
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Daniel Chalk",
+            "email": "daniel.chalk@wtg.co.uk"
+        }
+    ],
+    "minimum-stability": "stable"
+}
