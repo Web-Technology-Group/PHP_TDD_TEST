@@ -10,7 +10,7 @@
         <phpunit haltonerror="true" haltonfailure="true">
             <formatter type="plain" usefile="false"/>
             <batchtest>
-                <fileset dir="src">
+                <fileset dir="tests">
                     <include name="*Test.php"/>
                 </fileset>
             </batchtest>
