@@ -2,7 +2,6 @@
     "name": "wtg/php-test",
     "description": "PHP Test for applicants",
     "require": {
-        "league/event": "2.0.0",
         "wp-cli/php-cli-tools": "0.10.3"
     },
     "require-dev": {
