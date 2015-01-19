@@ -14,14 +14,14 @@ class Loop
 {
     public function start()
     {
-        $player = 100;
+        $player = new Actor(100);
         $monsters = [
-            "ogre1" => 100,
-            "ogre2" => 100,
-            "ogre3" => 100
+            "ogre1" => new Actor(100),
+            "ogre2" => new Actor(100),
+            "ogre3" => new Actor(100)
         ];
 
-        while ($command = cli\prompt("[player {$player}] ", false, null)) {
+        while ($command = cli\prompt("[player {$player->getHealth()}] ", false, null)) {
             $command = explode(' ', $command);
             switch ($command[0]) {
                 case 'quit':
@@ -42,22 +42,23 @@ class Loop
                     }
 
                     //assign monster and generate damage
-                    $monster = $command[1];
+                    $monster_name   = $command[1];
+                    $monster        = $monsters[$monster_name];
                     $monster_damage = rand(11, 36);
-                    $player_damage = rand(0, 19);
+                    $player_damage  = rand(0, 19);
 
                     //deduct damage from the monsters health and notify the user
-                    $monsters[$monster] -= $monster_damage;
-                    $player -= $player_damage;
+                    $monster->hurt($monster_damage);
+                    $player->hurt($player_damage);
 
-                    cli\line("$monster took $monster_damage damage, you have taken {$player_damage} damage.");
+                    cli\line("$monster_name took $monster_damage damage, you have taken {$player_damage} damage.");
 
-                    if ($monsters[$monster] <= 0) {
-                        unset($monsters[$monster]);
-                        cli\line("$monster has died.");
+                    if ($monster->isDead()) {
+                        unset($monsters[$monster_name]);
+                        cli\line("$monster_name has died.");
                     }
 
-                    if ($player <= 0) {
+                    if ($player->isDead()) {
                         cli\line("You have died, unlucky!");
                         return 0;
                     }
@@ -71,11 +72,11 @@ class Loop
                 case 'show':
                     switch ($command[1]) {
                         case 'all':
-                            foreach ($monsters as $monster => $health) {
-                                cli\line("$monster has $health health.");
+                            foreach ($monsters as $monster => $actor) {
+                                cli\line("$monster has {$actor->getHealth()} health.");
                             }
                         case 'player':
-                            cli\line("you have $player health.");
+                            cli\line("you have {$player->getHealth()} health.");
                             break;
                         default:
                             if (!array_key_exists($command[1], $monsters)) {

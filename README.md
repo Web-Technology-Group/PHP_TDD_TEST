@@ -11,10 +11,13 @@ You should still discuss web development with the applicant, this test does not 
 
 ## Tasks
 
-[ ] Clone the project
-[ ] Checkout the "improvements" branch
-[ ] Install dependencies
-[ ] Make the failing tests pass
+- [ ] Clone the project
+- [ ] Checkout the "improvements" branch
+- [ ] Install dependencies
+- [ ] Make the failing tests pass
+- [ ] Take a look at the ```Game\Loop::start```, take the time to study it. If you have time, try to improve the method and it's class (try to use TDD).
+- [ ] Discuss improvements that could be made with the interviewer.
+
 
 ## Requirement
 
@@ -30,3 +33,4 @@ bin/game.bat
 ./bin/game
 ```
 
+Type ```help``` in game to learn how to play.
